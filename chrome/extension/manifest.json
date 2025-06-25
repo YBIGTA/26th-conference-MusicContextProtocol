@@ -1,0 +1,57 @@
+{
+  "manifest_version": 3,
+  "name": "Music Context Protocol",
+  "version": "1.0.0",
+  "description": "Automatically plays music that matches your current work context",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "alarms",
+    "scripting",
+    "tabs"
+  ],
+  "host_permissions": [
+    "http://localhost:8000/*",
+    "https://generativelanguage.googleapis.com/*",
+    "https://api.jamendo.com/*",
+    "https://archive.org/*",
+    "https://ccmixter.org/*",
+    "https://api.spotify.com/*",
+    "https://open.spotify.com/*",
+    "https://www.youtube.com/*",
+    "https://youtube.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js", "audio-player.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["*://open.spotify.com/*"],
+      "js": ["spotify-web-player.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["*://www.youtube.com/*", "*://youtube.com/*"],
+      "js": ["youtube-player.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}
