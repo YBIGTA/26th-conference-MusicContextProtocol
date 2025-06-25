@@ -5,4 +5,6 @@ pandas
 numpy
 scikit-learn
 python-dotenv
-openai 
+openai
+Pillow
+google-generativeai
