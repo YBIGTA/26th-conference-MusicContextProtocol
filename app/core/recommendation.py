@@ -16,6 +16,10 @@ client = OpenAI(
     base_url="https://api.upstage.ai/v1"
 )
 
+# 데이터 파일 경로를 모듈 상단에서 정의
+base_dir = os.path.dirname(os.path.abspath(__file__))  # .../app/core
+data_dir = os.path.abspath(os.path.join(base_dir, "..", "data"))  # .../app/data
+
 def get_embedding(text: str) -> List[float]:
     """단일 텍스트의 임베딩을 반환합니다."""
     try:
@@ -31,13 +35,11 @@ def get_embedding(text: str) -> List[float]:
 def load_saved_data() -> Tuple[Dict, Dict]:
     """저장된 데이터를 불러옵니다."""
     # example_sentences.json 파일에서 문장들 불러오기
-    with open('example_sentences.json', 'r', encoding='utf-8') as f:
+    with open(os.path.join(data_dir, 'example_sentences.json'), 'r', encoding='utf-8') as f:
         feature_sentences = json.load(f)
-    
     # feature_embeddings.json 파일에서 임베딩 불러오기
-    with open('feature_embeddings.json', 'r', encoding='utf-8') as f:
+    with open(os.path.join(data_dir, 'feature_embeddings.json'), 'r', encoding='utf-8') as f:
         feature_embeddings = json.load(f)
-    
     return feature_sentences, feature_embeddings
 
 def find_similar_sentences(query: str, feature_sentences: Dict, feature_embeddings: Dict, top_k: int = 50) -> List[Tuple[str, str, float]]:
@@ -135,7 +137,17 @@ def recommend_tracks(query: str, top_k: int = 20):
     feature_relevance.sort(key=lambda x: x[1], reverse=True)
     top_features = feature_relevance[:3]
 
-    csv_path = "spotify_tracknames_updated.csv"
+    # --- 터미널에 출력 ---
+    print("\n[Feature별 유사도 (sim_high, sim_low)]")
+    for feature, (sim_high, sim_low) in feature_sim.items():
+        print(f"{feature}: sim_high={sim_high:.4f}, sim_low={sim_low:.4f}")
+
+    print("\n[상위 3개 feature 및 방향성]")
+    for feature, relevance, direction in top_features:
+        print(f"{feature}: {direction} (relevance={relevance:.4f})")
+    # -------------------
+
+    csv_path = os.path.join(data_dir, "spotify_tracknames_updated.csv")
     df = pd.read_csv(csv_path)
 
     def get_normalized_value(row, feature):
@@ -218,7 +230,7 @@ def main():
     # === 음악 추천 ===
     print("\n=== 쿼리 기반 음악 추천 Top 20 ===")
     # 1. CSV 로드
-    csv_path = "spotify_tracknames_updated.csv"
+    csv_path = os.path.join(data_dir, "spotify_tracknames_updated.csv")
     df = pd.read_csv(csv_path)
 
     def get_normalized_value(row, feature):
