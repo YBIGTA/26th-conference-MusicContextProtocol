@@ -1,0 +1,18 @@
+[project]
+name = "26th-conference-musiccontextprotocol"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115.13",
+    "google-generativeai>=0.8.5",
+    "numpy>=2.3.1",
+    "openai>=1.91.0",
+    "pandas>=2.3.0",
+    "pillow>=11.2.1",
+    "pydantic>=2.11.7",
+    "python-dotenv>=1.1.1",
+    "scikit-learn>=1.7.0",
+    "uvicorn>=0.34.3",
+]

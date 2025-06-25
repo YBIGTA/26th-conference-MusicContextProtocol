@@ -1,5 +1,4 @@
-from google import genai
-from google.genai import types
+import google.generativeai as genai
 from PIL import Image
 from io import BytesIO
 import base64
@@ -9,7 +8,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-client = genai.Client(api_key=os.environ["GOOGLE_API_KEY"])
+genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
 
 def extract_image_prompt_from_query(query: str) -> str:
     """
@@ -24,15 +23,9 @@ def extract_image_prompt_from_query(query: str) -> str:
     )
     full_prompt = f"{system_prompt}\n사용자 요청: {query}"
     try:
-        response = client.models.generate_content(
-            model="gemini-2.5-flash",
-            contents=full_prompt,
-            config=types.GenerateContentConfig(response_modalities=['TEXT'])
-        )
-        for part in response.candidates[0].content.parts:
-            if part.text is not None:
-                return part.text.strip()
-        return query  # fallback
+        model = genai.GenerativeModel("gemini-1.5-flash")
+        response = model.generate_content(full_prompt)
+        return response.text.strip() if response.text else query
     except Exception as e:
         print(f"[Prompt Extraction Error] {e}")
         return query
@@ -50,20 +43,9 @@ def generate_thumbnail_from_query(query: str, save_dir: str = '.', prefix: str =
     image_prompt = extract_image_prompt_from_query(query)
     print(f"[LLM 프롬프트] 이미지 생성에 사용된 쿼리: {image_prompt}")
     try:
-        response = client.models.generate_content(
-            model="gemini-2.0-flash-preview-image-generation",
-            contents=image_prompt,
-            config=types.GenerateContentConfig(
-                response_modalities=['TEXT', 'IMAGE']
-            )
-        )
-        for part in response.candidates[0].content.parts:
-            if part.inline_data is not None:
-                filename = f"{prefix}_{int(time.time())}.png"
-                filepath = os.path.join(save_dir, filename)
-                image = Image.open(BytesIO(part.inline_data.data))
-                image.save(filepath)
-                return filepath
+        # 현재 google-generativeai 라이브러리는 직접적인 이미지 생성을 지원하지 않음
+        # 대신 이미지 생성 프롬프트만 생성하고 None 반환
+        print(f"[이미지 생성 프롬프트] {image_prompt}")
         return None
     except Exception as e:
         print(f"[Thumbnail Generation Error] {e}")
