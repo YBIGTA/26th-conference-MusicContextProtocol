@@ -1,0 +1,37 @@
+=== Feature별 쿼리-예시 유사도 (높다/낮다) ===
+	[danceability] sim_high: 0.6398, sim_low: 0.5074
+	[energy] sim_high: 0.5834, sim_low: 0.5511
+	[loudness] sim_high: 0.6011, sim_low: 0.5272
+	[speechiness] sim_high: 0.4752, sim_low: 0.5293
+	[acousticness] sim_high: 0.5330, sim_low: 0.5672
+	[instrumentalness] sim_high: 0.5329, sim_low: 0.4563
+	[liveness] sim_high: 0.5164, sim_low: 0.4806
+	[valence] sim_high: 0.6377, sim_low: 0.4962
+	[tempo] sim_high: 0.6240, sim_low: 0.5392
+	
+	=== 추천에 사용된 상위 3개 feature 및 방향성 ===
+	danceability: high (relevance=0.6398)
+	valence: high (relevance=0.6377)
+	tempo: high (relevance=0.6240)
+	
+	=== 쿼리 기반 음악 추천 Top 20 ===
+	20941. Burning Up - 7" Edit - Madonna (추천 점수: 1.5911, 언어: English, popularity: 31)
+	13490. The Lazy Song - Bruno Mars (추천 점수: 1.5870, 언어: English, popularity: 72)
+	11259. Авантюра - IKON (추천 점수: 1.5841, 언어: Korean, popularity: 25)
+	6551. Billy Poco - ENHYPEN (추천 점수: 1.5758, 언어: Korean, popularity: 53)
+	28737. La Bicicleta - Carlos Vives (추천 점수: 1.5668, 언어: English, popularity: 74)   
+	28739. Perro Fiel (feat. Nicky Jam) - Shakira (추천 점수: 1.5433, 언어: English, popularity: 69)
+	7968. HO! - TWICE (추천 점수: 1.5430, 언어: Korean, popularity: 42)
+	13544. Get Me - Groove Chronicles Mix - Sia (추천 점수: 1.5372, 언어: English, popularity: 23)
+	9685. Get Cool - Stray Kids (추천 점수: 1.5311, 언어: Korean, popularity: 56)
+	13866. P.Y.T. (Pretty Young Thing) - Michael Jackson (추천 점수: 1.5267, 언어: English, popularity: 73)
+	11623. LOVE ME - iKON (추천 점수: 1.5260, 언어: Korean, popularity: 21)
+	14408. Running Over (feat. Lil Dicky) - Justin Bieber (추천 점수: 1.5213, 언어: English, popularity: 52)
+	7398. Ice Cream (with Selena Gomez) - BLACKPINK (추천 점수: 1.5156, 언어: Korean, popularity: 66)
+	8235. No-Return (Into the unknown) - LE SSERAFIM (추천 점수: 1.5108, 언어: Korean, popularity: 65)
+	6569. Don't Wait - SUPER JUNIOR (추천 점수: 1.5047, 언어: Korean, popularity: 39)       
+	22635. CHAMPAGNE ROSÉ (feat. Madonna & Cardi B) - Quavo (추천 점수: 1.5035, 언어: English, popularity: 39)
+	18151. Modern Woman - Billy Joel (추천 점수: 1.5030, 언어: English, popularity: 35)     
+	9037. Dirty Cash - BIGBANG (추천 점수: 1.5013, 언어: Korean, popularity: 28)
+	7158. Bring The Noize - NCT 127 (추천 점수: 1.4980, 언어: Korean, popularity: 42)       
+	6389. OUR - BOYNEXTDOOR (추천 점수: 1.4955, 언어: Korean, popularity: 60)
