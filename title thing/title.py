@@ -35,7 +35,7 @@ except ImportError:
 # ──────────────────────────────────────────────────────────────
 # 환경 변수 / 상수
 # ──────────────────────────────────────────────────────────────
-API_KEY  = os.getenv("UPSTAGE_API_KEY", "up_APa0kt7sDCh8KpdCLvJVHcSDFF6Oy")
+API_KEY  = os.getenv("UPSTAGE_API_KEY")
 BASE_URL = "https://api.upstage.ai/v1/solar"
 MODEL_ID = "solar-1-mini-chat"
 
