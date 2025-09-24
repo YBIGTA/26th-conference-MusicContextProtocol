@@ -1,79 +1,57 @@
-# 기능 추가 및 협업 가이드
+# MusicContextProtocol
 
-이 프로젝트는 누구나 새로운 기능(추천 알고리즘, 썸네일 생성, 기타 API 등)을 쉽게 추가하고,  
-자신의 브랜치에서 안전하게 개발할 수 있도록 설계되어 있습니다.
+<div align="center">
+<h3>25-1 YBIGTA 컨퍼런스</h3>
 
----
+<em>Claude, Cursor에서 만나는 음악 추천</em>
 
-## 1. 브랜치 생성 및 작업 흐름
+</div>
 
-1. **새 브랜치 생성**
-    ```bash
-    git checkout -b feature/기능명
-    ```
-    - 예시: `feature/playlist-title`, `feature/thumbnail-ai`, `yourname/genre-recommend`
+## 목차
+- [문제 정의](#문제-정의)
+- [세부 목표](#세부-목표)
+- [접근 방법](#접근-방법)
+- [결과 및 주요 기능](#결과-및-주요-기능)
+- [팀 구성](#팀-구성)
 
-2. **기능 개발**
-    - 아래 예시 구조에 따라 파일을 추가/수정합니다.
+## 문제 정의
+*(프로젝트를 진행하게된 배경 및 motivation 간략하게 서술)*
 
----
+## 세부 목표
 
-## 2. 기능 추가 예시
+*(세부적인 목표 및 계획)*
 
-### 1) 새로운 API 엔드포인트 추가
+## 접근 방법
 
-- **app/api/** 폴더에 기능별 파일 생성  
-  예: `app/api/playlist_title.py`
+1. **태스크** *(세부 목표를 달성하기 위한 구체적인 태스크)*
+    - (Task)
+        - (Description)
+    - (Task)
+        - (Description)
 
-    ```python
-    # app/api/playlist_title.py
-    from fastapi import APIRouter
-    from app.core import playlist_title
-    from app.models.schemas import PlaylistTitleRequest, PlaylistTitleResponse
+2. **데이터셋** *(사용한 데이터셋, API 등)*
+    - (Dataset A)
+        - (Description)
+    - (Dataset B)
+        - (Description)
 
-    router = APIRouter()
+3. **모델링/아키텍쳐 등** *(프로젝트 특성 및 목표에 따라)*
+    - (Models)
+        - (Description)
+    - (Service Architecture)
+        - (Description)
 
-    @router.post("/generate_playlist_title", response_model=PlaylistTitleResponse)
-    def generate_playlist_title_endpoint(req: PlaylistTitleRequest):
-        return playlist_title.generate_title_and_description(req.query)
-    ```
+## 결과 및 주요 기능
 
-### 2) 핵심 로직 추가
+*(평가 지표, 구현한 핵심 기능 등)*
 
-- **app/core/** 폴더에 기능별 파일 생성  
-  예: `app/core/playlist_title.py`
+## 팀 구성
 
-    ```python
-    # app/core/playlist_title.py
-    def generate_title_and_description(query: str):
-        # ... 실제 구현 ...
-        return {"title": "My Playlist", "description": "A playlist for ..."}
-    ```
-
-### 3) 모델/스키마 추가
-
-- **app/models/schemas.py**에 요청/응답 모델 추가
-
-    ```python
-    from pydantic import BaseModel
-
-    class PlaylistTitleRequest(BaseModel):
-        query: str
-
-    class PlaylistTitleResponse(BaseModel):
-        title: str
-        description: str
-    ```
-
-### 4) 라우터 등록
-
-- **app/main.py**에서 라우터를 등록
-
-    ```python
-    from app.api import playlist_title
-    app.include_router(playlist_title.router)
-    ```
-
----
-
-**자유롭게 기능을 추가하고, 브랜치에서 안전하게 개발한 뒤 PR을 보내주세요!**
+|이름|팀|역할|
+|-|-|-|
+|조석희|DS|(역할)|
+|정다연|DS|(역할)|
+|이경민|DS|(역할)|
+|윤희찬|DE|(역할)|
+|백준호|DE|(역할)|
+|성우제|DA|(역할)|
